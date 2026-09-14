@@ -1,0 +1,34 @@
+class AnalizadorPatrones:
+    def encontrar_palabras(self, texto, patron):
+        resultado = []
+        palabras = texto.split()
+        
+        for palabra in palabras:
+            if palabra.startswith(patron):
+                resultado.append(palabra)
+
+        return resultado
+    def agrupar_por_longitud(self, texto):
+        diccionario_grupos = {}
+        lista_palabras = texto.split()
+        
+        for palabra in lista_palabras:
+            tamano = len(palabra)
+            if tamano not in diccionario_grupos:
+                diccionario_grupos[tamano] = []
+                diccionario_grupos[tamano].append(palabra)
+  
+        return diccionario_grupos
+    
+    def palabras_unicas(self, texto):
+        lista_palabras = texto.split()
+        conjunto_sin_repetir = set(lista_palabras)
+        
+        return conjunto_sin_repetir
+    
+# --- ZONA DE PRUEBAS ---
+ap = AnalizadorPatrones()
+mi_frase = "el gato está aquí"
+resultado_diccionario = ap.agrupar_por_longitud(mi_frase)
+print(f"Diccionario por longitud: {resultado_diccionario}")
+print(f"Palabras que inician con 'g': {ap.encontrar_palabras(mi_frase, 'g')}")
